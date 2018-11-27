@@ -24,6 +24,12 @@ typedef enum BoatDirection {
     WEST
 } BoatDirection;
 
+typedef enum ShotState {
+    NOT_SHOT,
+    SHOT_IN_WATER,
+    SHOT_IN_BOAT
+} ShotState;
+
 typedef struct Point {
     char x;
     char y;
@@ -41,7 +47,7 @@ typedef struct Player {
     char gridSize;
     char numberOfBoats;
     char numberOfBoatsPlaced;
-    char** shotsMap;
+    ShotState** shotsMap;
 } Player;
 
 Point getBoatEndPoint(Boat boat);
@@ -54,5 +60,28 @@ Player* initializePlayer();
 void initializeBoats(Player* player);
 char canPlaceBoatForPlayer(Player *player, Boat boat);
 void moveBoat(Boat *boat, BoatDirection direction);
+
+
+/* TODO */
+
+/*
+ * returns 1 if the shooter hasnt yet shot here
+ * else returns 0
+ */
+char canShootAt(Player *shooter, Point shotLocation);
+
+/*
+ * updates the different players data following the shot
+ * we assume the shooter CAN SHOOT
+ */ 
+void shoot(Player *shooter, Player *target, Point shotLocation);
+
+/*
+ * returns a Point where the ia should shoot based on the result of the former shots
+ * try to shoot next to a former successful shot 
+ */
+Point ia_whereToShoot(Player* ia)
+
+
 
 #endif /* GAME_H_ */

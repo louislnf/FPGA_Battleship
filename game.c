@@ -107,13 +107,13 @@ Player* initializePlayer() {
     player->gridSize = GRID_SIZE;
     player->numberOfBoats = NUMBER_OF_BOATS;
     player->numberOfBoatsPlaced = 0;
-    player->shotsMap = (char**)malloc(GRID_SIZE*sizeof(char*));
+    player->shotsMap = (ShotState**)malloc(GRID_SIZE*sizeof(ShotState*));
     int i;
     for (i=0; i<GRID_SIZE; i++) {
-    	player->shotsMap = (char*) malloc(GRID_SIZE*sizeof(char));
+    	player->shotsMap = (ShotState*) malloc(GRID_SIZE*sizeof(ShotState));
     	int j;
     	for (j=0; j<GRID_SIZE; j++) {
-    		player->shotsMap[i][j] = 0;
+    		player->shotsMap[i][j] = NOT_SHOT;
     	}
     }
     return player;
